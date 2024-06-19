@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510a00e17bb345eea8bf91ff3d42316b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyReward: 15
+  enemyReward: 5
   currentHealth: 0
   maximumHealth: 200
   healthSlider: {fileID: 52532984094548699}
