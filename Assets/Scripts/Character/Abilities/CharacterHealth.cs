@@ -13,7 +13,13 @@ namespace Character.Abilities
         public float maximumHealth;
         public Slider healthSlider;
 
+        public ParticleSystem onHitVfx;
+
         private Action onEnemyDeath;
+        
+        [Header("Audio")] private AudioSource _audioSource;
+        public AudioClip onHitSfx;
+        public AudioClip onDeathSfx;
 
         private void Awake()
         {
@@ -21,15 +27,13 @@ namespace Character.Abilities
             healthSlider.maxValue = maximumHealth;
         }
 
-        private void Start()
-        {
-        }
-
         public void Hit(float value)
         {
+            _audioSource.PlayOneShot(onHitSfx);
             healthSlider.value = Mathf.MoveTowards(currentHealth, value, Time.deltaTime);
             currentHealth += value;
             currentHealth = Mathf.Clamp(currentHealth, 0, maximumHealth);
+            onHitVfx.Play();
             if (currentHealth >= maximumHealth)
             {
                 Die();
@@ -38,8 +42,10 @@ namespace Character.Abilities
 
         private void Die()
         {
+            _audioSource.PlayOneShot(onDeathSfx);
             ScoreManager.Instance.AddScore(enemyReward);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            Destroy(gameObject, onDeathSfx.length + 1);
         }
     }
 }

@@ -25,10 +25,7 @@ namespace Managers
             {
                 if (_gamePaused)
                 {
-                    pauseMenu.gameObject.SetActive(false);
-                    _gamePaused = false;
-                    player.UnfreezePlayer();
-                    Time.timeScale = 1;
+                    Unpause();
                 }
                 else
                 {
@@ -38,6 +35,14 @@ namespace Managers
                     Time.timeScale = 0;
                 }
             }
+        }
+
+        public void Unpause()
+        {
+            pauseMenu.gameObject.SetActive(false);
+            _gamePaused = false;
+            player.UnfreezePlayer();
+            Time.timeScale = 1;
         }
 
         private void FixedUpdate()

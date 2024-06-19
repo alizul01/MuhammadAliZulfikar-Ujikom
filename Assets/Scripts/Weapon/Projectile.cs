@@ -8,14 +8,14 @@ namespace Weapon
         public float attack;
         public float maxTime;
 
-        private float currentTime = 0.0f;
+        private float _currentTime = 0.0f;
 
         private void Update()
         {
-            if (currentTime < maxTime)
-                currentTime += Time.deltaTime;
+            if (_currentTime < maxTime)
+                _currentTime += Time.deltaTime;
 
-            if (currentTime >= maxTime)
+            if (_currentTime >= maxTime)
                 Destroy(this);
         }
 

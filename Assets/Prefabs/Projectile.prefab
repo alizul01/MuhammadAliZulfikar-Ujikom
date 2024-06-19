@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c473fa1b0b6e6ab4fa7037834febabb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 5
+  attack: 25
   maxTime: 3
 --- !u!54 &4907024736617512405
 Rigidbody:
