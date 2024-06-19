@@ -1,6 +1,8 @@
 ﻿using System;
+using Character;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Managers
 {
@@ -8,6 +10,35 @@ namespace Managers
     {
         public float levelTime = 60f;
         public TMP_Text timeUI;
+        public UnityEvent onGameOver;
+
+        public PlayerController player;
+
+        public CanvasGroup pauseMenu;
+        private bool _gamePaused;
+        private bool _gameOver;
+
+        private void Update()
+        {
+            if (_gameOver) return;
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (_gamePaused)
+                {
+                    pauseMenu.gameObject.SetActive(false);
+                    _gamePaused = false;
+                    player.UnfreezePlayer();
+                    Time.timeScale = 1;
+                }
+                else
+                {
+                    pauseMenu.gameObject.SetActive(true);
+                    _gamePaused = true;
+                    player.FreezePlayer();
+                    Time.timeScale = 0;
+                }
+            }
+        }
 
         private void FixedUpdate()
         {
@@ -15,7 +46,8 @@ namespace Managers
             timeUI.text = $"Time: {Mathf.RoundToInt(levelTime)}";
             if (levelTime <= 0)
             {
-                Debug.Log("Game Over");
+                onGameOver?.Invoke();
+                _gameOver = true;
             }
         }
     }

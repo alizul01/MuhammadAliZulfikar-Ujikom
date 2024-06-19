@@ -9,6 +9,7 @@ namespace Managers
         public static ScoreManager Instance;
         public int currentScore;
         public TMP_Text textScore;
+        public TMP_Text scoreGameOver;
 
         private void Awake()
         {
@@ -24,6 +25,7 @@ namespace Managers
         {
             currentScore += value;
             textScore.text = $"score: {currentScore}";
+            scoreGameOver.text = $"score: {currentScore}";
         }
     }
 }
