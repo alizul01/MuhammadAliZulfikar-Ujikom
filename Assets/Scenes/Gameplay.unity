@@ -1375,7 +1375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a88475d01d443eb802ddf45834940c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTime: 2
+  levelTime: 60
   timeUI: {fileID: 1917077487}
   onGameOver:
     m_PersistentCalls:
