@@ -25,6 +25,7 @@ namespace Character.Abilities
         {
             healthSlider.minValue = currentHealth;
             healthSlider.maxValue = maximumHealth;
+            _audioSource = GetComponent<AudioSource>();
         }
 
         public void Hit(float value)
