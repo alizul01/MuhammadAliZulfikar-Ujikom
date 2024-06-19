@@ -5,15 +5,15 @@ namespace Character
     public class PlayerController : MonoBehaviour
     {
         public float speed = 350f;
-        private CharacterController _characterController;
+        private Rigidbody _rb;
         [SerializeField] private Animator animator;
 
         private bool _isMoving = false;
-        private static readonly int Speed = Animator.StringToHash("Horizontal");
+        private static readonly int Horizontal = Animator.StringToHash("Horizontal");
 
         private void Awake()
         {
-            _characterController = GetComponent<CharacterController>();
+            _rb = GetComponent<Rigidbody>();
             if (animator == null)
             {
                 animator = GetComponentInChildren<Animator>();
@@ -23,18 +23,10 @@ namespace Character
         private void FixedUpdate()
         {
             float horizontal = Input.GetAxis("Horizontal");
-            if (horizontal != 0)
-            {
-                _isMoving = true;
-                
-                Vector3 moveDirection = new Vector3(horizontal, 0.0f, 0.0f).normalized * (speed * Time.deltaTime);
-                _characterController.Move(moveDirection);
-                animator.SetFloat(Speed, horizontal);
-            }
-            else
-            {
-                _isMoving = false;
-            }
+            Vector3 moveDirection = new Vector3(horizontal * speed, _rb.velocity.y, 0.0f);
+            _rb.velocity = moveDirection;
+
+            animator.SetFloat(Horizontal, horizontal);
         }
     }
 }
