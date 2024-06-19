@@ -16,7 +16,7 @@ namespace Weapon
                 _currentTime += Time.deltaTime;
 
             if (_currentTime >= maxTime)
-                Destroy(this);
+                Destroy(gameObject);
         }
 
         private void OnTriggerEnter(Collider other)

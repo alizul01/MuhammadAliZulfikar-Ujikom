@@ -36,8 +36,8 @@ namespace Character
         public void PlayGameOverAnimation()
         {
             _isMoving = false;
-            animator.SetBool(IsMoving, _isMoving);
             _rb.velocity = Vector3.zero;
+            animator.SetBool(IsMoving, false);
             animator.SetBool(GameOver, true);
         }
 

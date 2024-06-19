@@ -37,13 +37,13 @@ namespace Character.Abilities
             onHitVfx.Play();
             if (currentHealth >= maximumHealth)
             {
+                _audioSource.PlayOneShot(onDeathSfx);
                 Die();
             }
         }
 
         private void Die()
         {
-            _audioSource.PlayOneShot(onDeathSfx);
             ScoreManager.Instance.AddScore(enemyReward);
             gameObject.SetActive(false);
             Destroy(gameObject, onDeathSfx.length + 1);
