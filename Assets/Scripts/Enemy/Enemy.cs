@@ -1,4 +1,5 @@
 using System;
+using Managers;
 using UnityEngine;
 
 namespace Enemy
@@ -8,10 +9,13 @@ namespace Enemy
     {
         public float speed;
         private Rigidbody _rb;
-
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
+        }
+
+        private void Start()
+        {
         }
 
         private void FixedUpdate()
